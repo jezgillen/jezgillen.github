@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html onclick="myMove()">
+
+<style>
+#dot {
+  height: 2px;
+  width: 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  position: absolute;
+}
+</style>
+<body>
+
+
+<div id="background">
+<div id="dot"></div>
+</div>
+
+<script>
+var hasRun = false;
+
+function myMove() {
+  if(true){
+    hasRun = true;
+    var elem = document.getElementById("dot");
+    var elem2 = elem.cloneNode(true)
+    document.getElementById("background").appendChild(elem2)
+    var x = event.clientX;
+    var y = event.clientY;
+    elem2.style.top = y+"px";
+    elem2.style.left = x+"px";
+    var pos = 0;
+    var id = setInterval(frame, 5);
+    function frame() {
+      if (pos == 350) {
+   	clearInterval(id);
+      } else {
+        var elem = elem2.cloneNode(true);
+        document.getElementById("background").appendChild(elem)
+
+        <!-- Box-Muller to get two gaussians -->
+        root = Math.sqrt(-2*Math.log(Math.random()));
+        lastBit = 2*Math.PI*Math.random();
+        n1 = root*Math.cos(lastBit);
+        n2 = root*Math.sin(lastBit);
+
+        x = x + Math.round(4*n1);
+        y = y + Math.round(4*n2);
+
+        elem.style.top = y+"px"; 
+        elem.style.left = x+"px"; 
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
+
