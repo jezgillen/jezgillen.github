@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html onclick="startDots()">
+
+<style>
+#dot {
+  height: 2px;
+  width: 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  position: absolute;
+}
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+</style>
+<body class="stop-scrolling">
+
+
+<div id="background">
+<div id="dot"></div>
+</div>
+
+
+<script>
+function f(x,y){
+    x = (x-window.innerWidth/2)*4*Math.PI/window.innerWidth
+    y = (y-window.innerHeight/2)*4*Math.PI/window.innerHeight
+    return Math.exp(-(1/4)*Math.sqrt(Math.pow(x,2) + Math.pow(y,2)))*(Math.sin(2*Math.sqrt(Math.pow(x,2) + Math.pow(y,2)))+1)*(x<2*Math.PI)*(x>-2*Math.PI)*(y<2*Math.PI)*(y>-2*Math.PI);
+};
+
+var hasRun = false;
+function startDots() {
+    if(hasRun && false){
+        return;
+    }
+    hasRun = true;
+    var elem = document.getElementById("dot");
+    var elem2 = elem.cloneNode(true)
+    document.getElementById("background").appendChild(elem2)
+    var x = event.clientX;
+    var y = event.clientY;
+    elem2.style.top = y+"px";
+    elem2.style.left = x+"px";
+    var id = setInterval(frame, 1);
+    function frame() {
+        if (false) {
+            clearInterval(id);
+        } else {
+
+            <!-- Box-Muller to get two gaussians -->
+            root = Math.sqrt(-2*Math.log(Math.random()));
+            lastBit = 2*Math.PI*Math.random();
+            g1 = root*Math.cos(lastBit);
+            g2 = root*Math.sin(lastBit);
+
+            newx = x + 20*g1;
+            newy = y + 20*g2;
+            alpha = f(newx,newy)/f(x,y)
+            if(alpha > Math.random()){
+                x = newx
+                y = newy
+                var elem = elem2.cloneNode(true);
+                document.getElementById("background").appendChild(elem)
+
+                elem.style.top = y+"px"; 
+                elem.style.left = x+"px"; 
+            }
+        }
+    }
+}
+</script>
+
+</body>
+</html>
+
