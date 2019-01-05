@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html onclick="startDots()">
+<html >
 <head>
     <title>Random Walk Sampler</title> 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -10,6 +10,35 @@
 
 
 <style>
+.slider {
+  -webkit-appearance: none;
+  width: 20%;
+  height: 0.7em;
+  border-radius: 0.3em;   
+  background: #bbb;
+  outline: none;
+  opacity: 0.6;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%; 
+  background: #777;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
 #dot {
   height: 0.5em;
   width: 0.5em;
@@ -18,22 +47,45 @@
   position: absolute;
   opacity: 0.2;
 }
+html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+#background {
+    flex: 1 0 auto;
+}
 .stop-scrolling {
   height: 100%;
   overflow: hidden;
   background-color: #000;
 }
+
+.footer {
+    background-color: #222;
+    flex-shrink: 0;
+    padding: 1em;
+    text-align: center;
+}
 </style>
-<body class="stop-scrolling">
+<body class="stop-scrolling" >
 
 
-<div id="background">
+<div id="background" onclick="startDots()">
 <div id="dot"></div>
 </div>
-
+<footer class="footer">
+    <div class="slidecontainer">
+        <input type="range" min="5" max="100" value="40" class="slider" id="g_deviation">
+        Value: <span id="currentValue"></span>
+    </div>
+</footer>
+</body>
 
 <script>
-<!-- TODO scale everything by size of window, or maybe size of default font -->
+<!-- TODO scale everything by size of window, or maybe size of font -->
 function spiralMistake(x,y){
     a = 2; b = 2;
     return Math.exp(-0.5*(Math.sqrt(x**2 + y**2) - (a+b*Math.asin(y/x)))**2)
@@ -63,6 +115,16 @@ function f(x,y){
     return spiral(x,y);
 };
 
+<!-- Measured in pixels -->
+var slider = document.getElementById("g_deviation");
+var value = document.getElementById("currentValue");
+value.innerHTML = slider.value;
+var g_deviation = slider.value;
+slider.oninput = function() {
+    value.innerHTML = this.value;
+    g_deviation = this.value;
+}
+
 var hasRun = false;
 function startDots() {
     if(hasRun && false){
@@ -90,8 +152,8 @@ function startDots() {
             g1 = root*Math.cos(lastBit);
             g2 = root*Math.sin(lastBit);
 
-            newx = x + 20*g1;
-            newy = y + 20*g2;
+            newx = x + g_deviation*g1;
+            newy = y + g_deviation*g2;
             alpha = f(newx,newy)/f(x,y);
             if(alpha > Math.random()){
                 numDots++;
@@ -110,5 +172,4 @@ function startDots() {
 }
 </script>
 
-</body>
 </html>
