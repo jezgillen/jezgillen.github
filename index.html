@@ -8,22 +8,25 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
 </head>
 
-<link rel="stylesheet" href="style.css" />
 
-<body class="stop-scrolling" >
-
-
-<div id="background" onclick="startDots()">
-<div id="dot"></div>
-</div>
-<footer class="footer">
-    <div class="slidecontainer">
-        <input type="range" min="5" max="100" value="40" class="slider" id="g_deviation">
-        Value: <span id="currentValue"></span>
+<body>
+    <div id="wrapper">
+    <div id="background" class="panels" onclick="startDots()">
+        Fixed Panel
+        <div id="dot"></div>
     </div>
-</footer>
+    <div id="contentwrapper" class="panels">
+        <div id="content">
+            Step Size:
+            <div class="slidecontainer">
+                <input type="range" min="5" max="100" value="40" class="slider" id="g_deviation">
+                Value: <span id="currentValue"></span>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
 
 <script src="script.js"></script>
-
+<link rel="stylesheet" href="style.css" />
 </html>

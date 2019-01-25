@@ -25,7 +25,7 @@ function f(x,y){
         console.log("out of bounds")
         return 0;
     }
-    return spiral(x,y);
+    return circles(x,y);
 };
 
 <!-- Measured in pixels -->

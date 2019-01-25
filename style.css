@@ -30,30 +30,44 @@
 #dot {
   height: 0.5em;
   width: 0.5em;
-  background-color: #000;
+  background-color: black;
   border-radius: 50%;
   position: absolute;
   opacity: 0.2;
 }
-html, body {
-    height: 100%;
+html,body {
+    padding: 0;
+    margin: 0;
+    background: blue;
+    height:100%;
+    width:100%;
 }
-body {
-    display: flex;
-    flex-direction: column;
+.panels {
+    position:relative;
+    height:100%;
+    width:100%;
 }
-#background {
-    flex: 1 0 auto;
-}
-.stop-scrolling {
-  height: 100%;
-  overflow: hidden;
-  background-color: #000;
+#wrapper {
+    position: absolute;
+    height:100%;
+    width:100%;
 }
 
-.footer {
-    background-color: #222;
-    flex-shrink: 0;
-    padding: 1em;
-    text-align: center;
+#background {
+    position: fixed;
+    background: black;
+    top:0;
+    left:0;
+    z-index:1;
+}
+#contentwrapper {
+    margin-top:100%;
+    background:rgba(200,200,200,0.1);
+    z-index:3;
+    height:35%;
+}
+#content {
+    padding: 10%;
+    color: lightgrey;
+    opacity:0.8;
 }
