@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 
-<html >
+<html>
+
+
 <head>
     <title>Random Walk Sampler</title> 
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 </head>
 
 
@@ -17,16 +19,23 @@
     </div>
     <div id="contentwrapper" class="panels">
         <div id="content">
+            <div class="equation">
+                $$e^{-\frac{1}{4}\sqrt{x^2+y^2}}(\sin(2\sqrt{x^2+y^2})+1)$$
+            </div>
             Step Size:
             <div class="slidecontainer">
-                <input type="range" min="5" max="100" value="40" class="slider" id="g_deviation">
-                Value: <span id="currentValue"></span>
+                <input type="range" min="1" max="80" value="20" class="slider" id="g_deviation">
+                <span id="currentValue"></span>%
             </div>
         </div>
     </div>
     </div>
 </body>
 
-<script src="script.js"></script>
+
 <link rel="stylesheet" href="style.css" />
+<script src="script.js" ></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 </html>

@@ -1,3 +1,4 @@
+var window_width = window.innerWidth;
 <!-- TODO scale everything by size of window, or maybe size of font -->
 function spiralMistake(x,y){
     a = 2; b = 2;
@@ -15,7 +16,7 @@ function spiral(x,y){
 }
 
 function circles(x,y){
-    return Math.exp(-(1/4)*Math.sqrt(Math.pow(x,2) + Math.pow(y,2)))*(Math.sin(2*Math.sqrt(Math.pow(x,2) + Math.pow(y,2)))+1);
+    return Math.exp(-(1/4)*Math.sqrt(x**2 + y**2))*(Math.sin(2*Math.sqrt(x**2 + y**2))+1);
 }
 
 function f(x,y){
@@ -30,12 +31,12 @@ function f(x,y){
 
 <!-- Measured in pixels -->
 var slider = document.getElementById("g_deviation");
-var value = document.getElementById("currentValue");
-value.innerHTML = slider.value;
+var g_value_text = document.getElementById("currentValue");
+g_value_text.innerHTML = slider.value;
 var g_deviation = slider.value;
 slider.oninput = function() {
-    value.innerHTML = this.value;
-    g_deviation = this.value;
+    g_deviation = (this.value/100)*window_width;
+    g_value_text.innerHTML = this.value;
 }
 
 var hasRun = false;
@@ -76,7 +77,6 @@ function startDots() {
                 document.getElementById("background").appendChild(elem);
 
                 elem.style.backgroundColor = "hsl("+numDots/10+",80%,80%)";
-                console.log(Math.round(x) +","+Math.round(y))
                 elem.style.top = y+"px"; 
                 elem.style.left = x+"px"; 
             }
