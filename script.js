@@ -41,6 +41,25 @@ slider.oninput = function() {
 
 var hasRun = false;
 function startDots() {
+
+    var msg = 
+{
+  "jsonrpc" : "2.0",
+  "id" : 8106,
+  "method" : "public/ticker",
+  "params" : {
+    "instrument_name" : "BTC-PERPETUAL"
+  }
+};
+var ws = new WebSocket('wss://test.deribit.com/ws/api/v2');
+ws.onmessage = function (e) {
+    // do something with the response...
+    console.log('received from server : ', e.data);
+};
+ws.onopen = function () {
+    ws.send(JSON.stringify(msg));
+};    
+
     if(hasRun && false){
         return;
     }
