@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 
 <head>
-    <title>Random Walk Sampler</title> 
+    <title>Hexagons</title> 
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
@@ -15,26 +15,18 @@
     <canvas id="background" style="border:1px solid #000000;"></canvas> 
     <div id="contentwrapper" class="panels">
         <div id="hint">
-            Scroll down or click anywhere
+            Scroll down for context
         </div>
         <div id="content">
-            <p><b>Random Walk Sampler</b><p>
-            Click anywhere above to start a demonstration of a random walk sampler, which is a special case of the <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings algorithm</a>. This algorithm can be used to sample from distributions that would be otherwise difficult to sample from, like the unnormalised distribution: 
-            <div class="equation">
-                $$P(x,y) \propto \exp\left({-\frac{1}{4}\sqrt{x^2+y^2}}\right)\left(\sin \left(2\sqrt{x^2+y^2}\right)+1 \right)$$
-            </div>
-            Step Size:
-            <div class="slidecontainer">
-                <input type="range" min="1" max="30" value="4" class="slider" id="g_deviation">
-                <span id="currentValue"></span>%
-            </div>
+            <p><b>Hexagon of Circles</b><p>
+            I made this while solving <a href="https://www.janestreet.com/puzzles/circle-time/">this puzzle</a>, which asks how much of a circle can be covered by this arrangement of rings.
         </div>
         <div class="footer">
             <span class="bottom_link">
                 <a href="https://jezgillen.github.io/JaynesProbabilityTheory/">Jaynes solutions</a>
             </span>
             <span class="bottom_link">
-                <a href="./hex.html">Hexagons</a>
+                <a href="./index.html">Random Walk</a>
             </span>
         </div>
     </div>
@@ -43,7 +35,7 @@
 
 
 <link rel="stylesheet" href="style.css" />
-<script src="walker.js" ></script>
+<script src="hex.js" ></script>
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
