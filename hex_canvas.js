@@ -4,10 +4,6 @@ c.width = c.height = 500
 cen_x = c.width/2
 cen_y = c.height/2
 
-ctx.beginPath();
-ctx.arc(cen_x, cen_y, cen_x, 0, 2 * Math.PI);
-ctx.stroke();
-
 // ratio between large and one level smaller hexagon radii
 constant_ratio = (4*Math.sqrt(3) + 2 - 4*Math.sqrt(1+Math.sqrt(3)))/6
 
@@ -16,20 +12,31 @@ ratio_of_areas = (2/3)*(1/(1-constant_ratio**2))
 console.log(ratio_of_areas)
 
 var time = new Date();
-var startTime = time.getSeconds()/60 + time.getMilliseconds()/1000/60
-var speed = 10
+var startTime = time.getTime()
+var speed = 50
 
 function draw_rings(){
+    init_canvas()
     var time = new Date();
-    angle = speed*(time.getSeconds()/60 + time.getMilliseconds()/1000/60 - startTime)
+    angle = speed*(time.getTime() - startTime)/60000 
     // ctx.clearRect(0,0,c.width, c.height)
-    ctx.fillStyle = 'black'
-    ctx.fillRect(0,0,c.width, c.height)
     for (var i = 0; i < 6; i++){
-        make_hex(cen_x, cen_y, (2/3)*cen_x*constant_ratio**i,(i%2 == 0)*0.5+angle*0.7**i,'red','blue')
+        var radius = (2/3)*cen_x*constant_ratio**i
+        var a = (i%2 == 0)*0.5+angle*0.7**i
+        make_hex(cen_x, cen_y, radius, a,'red','blue')
     }
     
     window.requestAnimationFrame(draw_rings);
+}
+
+function init_canvas(){
+    ctx.fillStyle = 'black'
+    ctx.fillRect(0,0,c.width, c.height)
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'darkblue';
+    ctx.arc(cen_x, cen_y, cen_x, 0, 2 * Math.PI);
+    ctx.stroke();
 }
 
 function make_hex(x,y,rad,angle,col1, col2){
