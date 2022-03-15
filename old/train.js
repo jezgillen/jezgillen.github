@@ -40,15 +40,6 @@ function startDots() {
     setInterval(addDrop, 3); // call addDot() every 3ms
 }
 
-// Measured in pixels 
-var slider = document.getElementById("g_deviation");
-var g_value_text = document.getElementById("currentValue");
-g_value_text.innerHTML = slider.value;
-var g_deviation = slider.value/100*canvas.width;
-slider.oninput = function() {
-    g_deviation = (this.value/100)*canvas.width;
-    g_value_text.innerHTML = this.value;
-}
 
 rainvelx = 3
 rainvely = 3
